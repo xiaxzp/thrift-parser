@@ -313,6 +313,9 @@ export function createParser(
                 ? throws.loc
                 : params.loc
 
+        if (comments[0] && comments[0].loc.end.line === endLoc.end.line) {
+            leadingComments.push(comments.shift() as Comment)
+        }
         return {
             type: SyntaxType.FunctionDefinition,
             name: createIdentifier(nameToken.text, nameToken.loc),
